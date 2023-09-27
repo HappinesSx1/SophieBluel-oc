@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/login.css">
+    <title>login</title>
+</head>
+<body>
+    <header>
+        <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">projets</a></li>
+                <li><a href="#">contact</a></li>
+                <li><a href="#">login</a></li>
+                <li><img src="../assets/icons/instagram.png" alt="Instagram"></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="login-container">
+            <h1>Log In</h1>
+            <form method="get" class="form-login">
+                <div class="input-block">
+                    <label for="login-email">E-mail</label>
+                    <input class="test" id="login-email" type="email" required>
+                </div>
+                <div class="input-block">
+                    <label for="login-password">Mot de passe</label>
+                    <input id="login-password" type="password" required>
+                </div>
+                <input type="submit" class="submitbtn">
+            </form>
+            <p class="message"><a href="#">Mot de passe oublié</a></p>
+        </div>
+    </main>
+
+    <script src="./login.js"></script>
+</body>
+</html>

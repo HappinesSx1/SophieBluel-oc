@@ -19,17 +19,17 @@ form.addEventListener("submit", async (event) => {
     body: JSON.stringify(data),
   })
     .then((res) => {
-      const statusCode = res.status;
-      console.log(statusCode);
-
-      if (statusCode >= 200 && statusCode <= 299) {
+      if (res.status == 200) {
         return res.json();
       } else {
-        console.log("mauvais mdp");
+        throw new Error("mauvais mdp");
       }
     })
-    .then((data) => (response = data));
-
-  localStorage.setItem("token de connexion", response.token);
-  // document.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+    .then((data) => {
+      localStorage.setItem("token de connexion", data.token);
+      document.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });

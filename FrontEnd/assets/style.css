@@ -102,14 +102,6 @@ li:hover {
 	color: #B1663C;
 }
 
-/* .dp-none {
-	display: none;
-}
-
-.dp-block {
-	display: block;
-} */
-
 /* modal */
 .modal {
 	display: none;
@@ -168,7 +160,6 @@ li:hover {
 	width: 100%;
 }
 
-
 .modal-adding {
 	display: none;
 }
@@ -206,13 +197,15 @@ li:hover {
 	margin-top: 25px;
 }
 
-.add-modal input {
+.add-modal input, .add-modal select {
 	min-width: 379px;
     height: 51px;
     background: #FFF;
     box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
     border: none;
 }
+
+
 
 .modal-adding h2 {
 	display: flex;
@@ -226,6 +219,16 @@ li:hover {
 	justify-content: center;
 	background-color: #E8F1F6;
 	border-radius: 3px;
+	height: 169px;
+}
+
+.before-selected {
+	display: block;
+}
+
+.after-selected img {
+	width: 100%;
+	height: 169px;
 }
 
 .label-file {
@@ -270,7 +273,7 @@ input[type=file] {
 .edit-mod {
 	background-color: #000;
 	height: 59px;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: center;
 }

@@ -86,7 +86,7 @@ xMark.forEach((mark) =>
 
 /* modal */
 
-/* navigation in the modal */
+/* navigation modal */
 
 const modalAdding = document.querySelector(".modal-adding");
 const modalDelete = document.querySelector(".modal-delete");
@@ -103,23 +103,31 @@ arrowLeft.addEventListener("click", () => {
   modalDelete.style.display = "block";
 });
 
-/* adding images */
+/* Ajout images */
+
+const selectedImage = document.getElementById("selected-image");
+const imgChoose = document.querySelector(".before-selected");
+
+imageModal.addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    selectedImage.src = URL.createObjectURL(file);
+    imgChoose.style.display = "none";
+  } else {
+    selectedImage.src = "";
+    imgChoose.style.display = "block";
+  }
+});
 
 formModal.addEventListener("submit", (event) => {
   event.preventDefault();
   const file = imageModal.files[0];
 
-  // Vérifiez si un fichier a été sélectionné
   if (file) {
-    // Créez un objet FormData et ajoutez le fichier en tant que Blob
     const formData = new FormData();
     formData.append("image", file);
-
-    // Les autres données du formulaire
     formData.append("title", `${titreModal.value}`);
-    formData.append("category", `${categorieModal.value}`); // Remplacez 123 par la valeur de votre catégorie
-
-    // Configuration de la requête
+    formData.append("category", `${categorieModal.value}`);
     const requestOptions = {
       method: "POST",
       body: formData,
@@ -129,11 +137,10 @@ formModal.addEventListener("submit", (event) => {
       },
     };
 
-    // Envoi de la requête à l'URL spécifiée
     fetch("http://localhost:5678/api/works", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Faites quelque chose avec la réponse JSON
+        console.log(data);
       })
       .catch((error) => {
         console.error("Erreur lors de l'envoi de la requête:", error);
@@ -150,23 +157,19 @@ function galeriesDisplayModal(worksModal) {
     .map(
       (work) =>
         `
-        <figure id=${work.id} class="works">
-          <i class="fa-solid fa-trash-can"></i>
+        <figure class="works">
+          <i id=${work.id} class="fa-solid fa-trash-can"></i>
           <img src=${work.imageUrl}>
         </figure>
         `
     )
     .join("");
 
-  const figures = document.querySelectorAll(".works");
+  const trashCan = document.querySelectorAll(".fa-trash-can");
 
-  figures.forEach(function (figure) {
-    figure.addEventListener("click", function (event) {
-      // Obtenez l'ID de l'élément sur lequel le clic a eu lieu
+  trashCan.forEach(function (trash) {
+    trash.addEventListener("click", function (event) {
       const elementId = event.currentTarget.id;
-
-      // Faites quelque chose avec l'ID (par exemple, affichez-le dans la console)
-      console.log("ID de l'élément cliqué :", elementId);
       const requestOptionsDelete = {
         method: "DELETE",
         headers: {
@@ -186,10 +189,12 @@ function galeriesDisplayModal(worksModal) {
 
 const modifieBtn = document.querySelector(".modification");
 const tri = document.querySelector(".tri");
+const editVersion = document.querySelector(".edit-mod");
 
 const connected = localStorage.getItem("token de connexion") ? true : false;
 
 if (connected) {
   modifieBtn.style.display = "flex";
   tri.style.display = "none";
+  editVersion.style.display = "flex";
 }

@@ -45,9 +45,14 @@
 				<form action="" class="form-modal">
 					<div class="add-image">
 						<label for="file" class="label-file">
-							<i class="fa-regular fa-image" style="color: #b9c5cc;"></i>
-							<h3>+ Ajouter photo</h3>
-						<p>jpg, png: 4mo max</p>
+							<div class="before-selected">
+								<i class="fa-regular fa-image" style="color: #b9c5cc;"></i>
+								<h3>+ Ajouter photo</h3>
+								<p>jpg, png: 4mo max</p>
+							</div>
+							<div class="after-selected">
+								<img src="" alt="image selectionnée" id="selected-image" class="selected-image-class">
+							</div>
 					</label>
 					<input type="file" id="file">
 				</div>
@@ -57,7 +62,12 @@
 				</div>
 				<div class="add-modal">
 					<label for="categorie-modal">Catégorie</label>
-					<input type="text" id="categorie-modal">
+					<!-- <input type="text" id="categorie-modal"> -->
+					<select id="categorie-modal">
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hotels & restaurants</option>
+					</select>
 				</div>
 				<div class="line"></div>
 				<input type="submit" class="modal-submit btn-modal" value="Envoyer">

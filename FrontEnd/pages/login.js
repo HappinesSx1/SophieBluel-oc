@@ -13,7 +13,7 @@ form.addEventListener("submit", async (event) => {
     alert("Adresse email invalide");
     return false;
   }
-  if (lpassword.value.length <= 6) {
+  if (lpassword.value.length < 6) {
     alert("Le mot de passe doit contenir au moins 6 caractères");
     return false;
   }

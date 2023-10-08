@@ -7,13 +7,9 @@ const appartementsButton = document.getElementById("Appartements");
 const hrButton = document.getElementById("H&r");
 const gallery = document.querySelector(".gallery");
 const form = document.querySelector(".form-login");
-const lemail = document.querySelector(".test");
-const lpassword = document.querySelector("#login-password");
-const submitBtn = document.querySelector(".submitbtn");
 const modifierMod = document.querySelector(".modification");
 const backMod = document.querySelector(".modal-back");
 const xMark = document.querySelectorAll(".fa-xmark");
-const formModal = document.querySelector(".form-modal");
 const imageModal = document.getElementById("file");
 const titreModal = document.getElementById("title-modal");
 const categorieModal = document.getElementById("categorie-modal");
@@ -68,7 +64,7 @@ hrButton.addEventListener("click", () => {
   filterWorksByCategory("Hotels & restaurants");
 });
 
-window.addEventListener("load", fetcher);
+// window.addEventListener("load", fetcher);
 
 modifierMod.addEventListener("click", () => {
   document.getElementById("modal").style.display = "block";
@@ -107,20 +103,23 @@ arrowLeft.addEventListener("click", () => {
 
 const selectedImage = document.getElementById("selected-image");
 const imgChoose = document.querySelector(".before-selected");
+const SelecImage = document.querySelector(".after-selected");
+const myForm = document.getElementById("submit-modal");
 
 imageModal.addEventListener("change", function (event) {
   const file = event.target.files[0];
   if (file) {
     selectedImage.src = URL.createObjectURL(file);
     imgChoose.style.display = "none";
+    selectedImage.style.display = "block";
   } else {
     selectedImage.src = "";
-    imgChoose.style.display = "block";
   }
 });
 
-formModal.addEventListener("submit", (event) => {
+myForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  console.log("form submitted");
   const file = imageModal.files[0];
 
   if (file) {
@@ -169,6 +168,7 @@ function galeriesDisplayModal(worksModal) {
 
   trashCan.forEach(function (trash) {
     trash.addEventListener("click", function (event) {
+      event.preventDefault();
       const elementId = event.currentTarget.id;
       const requestOptionsDelete = {
         method: "DELETE",
@@ -190,6 +190,7 @@ function galeriesDisplayModal(worksModal) {
 const modifieBtn = document.querySelector(".modification");
 const tri = document.querySelector(".tri");
 const editVersion = document.querySelector(".edit-mod");
+const loginOut = document.querySelector(".login-logout");
 
 const connected = localStorage.getItem("token de connexion") ? true : false;
 
@@ -197,4 +198,16 @@ if (connected) {
   modifieBtn.style.display = "flex";
   tri.style.display = "none";
   editVersion.style.display = "flex";
+  loginOut.innerText = "Logout";
 }
+
+// //LOG OUT!! a la fermeture onglet / redirection & Rechargement pour la sécurité
+// function removeToken() {
+//   // Supprime le token du localStorage
+//   localStorage.removeItem("token de connexion");
+// }
+
+// //événement fermeture onglet ou redirection vers un autre site
+// window.addEventListener("unload", removeToken);
+
+window.addEventListener("load", fetcher);

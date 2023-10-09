@@ -64,8 +64,6 @@ hrButton.addEventListener("click", () => {
   filterWorksByCategory("Hotels & restaurants");
 });
 
-// window.addEventListener("load", fetcher);
-
 modifierMod.addEventListener("click", () => {
   document.getElementById("modal").style.display = "block";
 });
@@ -117,9 +115,8 @@ imageModal.addEventListener("change", function (event) {
   }
 });
 
-myForm.addEventListener("submit", (event) => {
+myForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log("form submitted");
   const file = imageModal.files[0];
 
   if (file) {
@@ -136,7 +133,7 @@ myForm.addEventListener("submit", (event) => {
       },
     };
 
-    fetch("http://localhost:5678/api/works", requestOptions)
+    await fetch("http://localhost:5678/api/works", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -147,6 +144,7 @@ myForm.addEventListener("submit", (event) => {
   } else {
     console.error("Aucun fichier sélectionné.");
   }
+  fetcher();
 });
 
 /* DELETE SECTION */
@@ -158,7 +156,7 @@ function galeriesDisplayModal(worksModal) {
         `
         <figure class="works">
           <i id=${work.id} class="fa-solid fa-trash-can"></i>
-          <img src=${work.imageUrl}>
+          <img src=${work.imageUrl} class="imgtest">
         </figure>
         `
     )
@@ -167,7 +165,7 @@ function galeriesDisplayModal(worksModal) {
   const trashCan = document.querySelectorAll(".fa-trash-can");
 
   trashCan.forEach(function (trash) {
-    trash.addEventListener("click", function (event) {
+    trash.addEventListener("click", async function (event) {
       event.preventDefault();
       const elementId = event.currentTarget.id;
       const requestOptionsDelete = {
@@ -177,10 +175,11 @@ function galeriesDisplayModal(worksModal) {
         },
       };
 
-      fetch(
+      await fetch(
         `http://localhost:5678/api/works/${elementId}`,
         requestOptionsDelete
       );
+      fetcher();
     });
   });
 }

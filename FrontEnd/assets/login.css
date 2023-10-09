@@ -29,6 +29,8 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	height: calc(100vh - 50px);
+	position: relative;
 }
 header {
 	display: flex;
@@ -137,4 +139,11 @@ input[type="submit"] {
 
 .message {
     text-decoration: underline;
+}
+
+footer nav ul {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 2em
 }

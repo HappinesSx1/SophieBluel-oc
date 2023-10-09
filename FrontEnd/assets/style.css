@@ -48,8 +48,6 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
@@ -100,6 +98,10 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+}
+.main-body {
+	max-width: 1140px;
+	margin:auto;
 }
 
 /* modal */

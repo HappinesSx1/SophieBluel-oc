@@ -64,6 +64,9 @@ hrButton.addEventListener("click", () => {
   filterWorksByCategory("Hotels & restaurants");
 });
 
+/* modal */
+
+/* navigation modal */
 modifierMod.addEventListener("click", () => {
   document.getElementById("modal").style.display = "block";
 });
@@ -77,10 +80,6 @@ xMark.forEach((mark) =>
     document.getElementById("modal").style.display = "none";
   })
 );
-
-/* modal */
-
-/* navigation modal */
 
 const modalAdding = document.querySelector(".modal-adding");
 const modalDelete = document.querySelector(".modal-delete");
@@ -145,6 +144,10 @@ myForm.addEventListener("submit", async (event) => {
     console.error("Aucun fichier sélectionné.");
   }
   fetcher();
+  selectedImage.src = "";
+  imgChoose.style.display = "flex";
+  selectedImage.style.display = "none";
+  titreModal.value = "";
 });
 
 /* DELETE SECTION */

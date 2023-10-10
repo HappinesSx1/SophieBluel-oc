@@ -43,7 +43,7 @@ function filterWorksByCategory(category) {
     category === "Tous"
       ? works
       : works.filter((work) => work.category.name === category);
-  console.log(filteredWorks);
+  // console.log(filteredWorks);
   galeriesDisplay(filteredWorks);
   currentCategory = category; // Mettre à jour la catégorie actuelle
 }
@@ -102,6 +102,7 @@ const selectedImage = document.getElementById("selected-image");
 const imgChoose = document.querySelector(".before-selected");
 const SelecImage = document.querySelector(".after-selected");
 const myForm = document.getElementById("submit-modal");
+const errorModalForm = document.querySelector(".error-form-modal");
 
 imageModal.addEventListener("change", function (event) {
   const file = event.target.files[0];
@@ -136,12 +137,14 @@ myForm.addEventListener("submit", async (event) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        errorModalForm.style.display = "none";
       })
       .catch((error) => {
         console.error("Erreur lors de l'envoi de la requête:", error);
       });
   } else {
     console.error("Aucun fichier sélectionné.");
+    errorModalForm.style.display = "block";
   }
   fetcher();
   selectedImage.src = "";
@@ -202,14 +205,5 @@ if (connected) {
   editVersion.style.display = "flex";
   loginOut.innerText = "Logout";
 }
-
-// //LOG OUT!! a la fermeture onglet / redirection & Rechargement pour la sécurité
-// function removeToken() {
-//   // Supprime le token du localStorage
-//   localStorage.removeItem("token de connexion");
-// }
-
-// //événement fermeture onglet ou redirection vers un autre site
-// window.addEventListener("unload", removeToken);
 
 window.addEventListener("load", fetcher);

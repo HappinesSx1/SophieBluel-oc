@@ -39,7 +39,7 @@ form.addEventListener("submit", async (event) => {
     })
     .then((data) => {
       localStorage.setItem("token de connexion", data.token);
-      document.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+      document.location.href = "../index.html";
     })
     .catch((error) => {
       console.log(error);
